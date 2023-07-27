@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <memory>
 using namespace std;
 
 int main() {
@@ -20,7 +21,7 @@ int main() {
 
 	p2val = std::move(pvalue);
 	
-	cout << "Value of pvalue : " << pvalue << endl;
+	cout << "Value of pvalue : " << *pvalue << endl;
 	cout << "Value of p2val : " << *p2val << endl;
 	cout << "name : " << *name << endl;
 
