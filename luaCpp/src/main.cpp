@@ -7,7 +7,7 @@ void TestLua() {
     sol::state lua;
     lua.open_libraries(sol::lib::base);
 
-    lua.script_file("./src/script.lua");
+    lua.script_file("../src/script.lua");
 
     // This is how we get the value of a global variable from our Lua script
     int someVariableInsideCpp = lua["some_variable"];

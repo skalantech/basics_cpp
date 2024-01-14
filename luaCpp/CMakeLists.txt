@@ -23,7 +23,7 @@ set(OBJ_NAME luaTest)
 add_executable(${OBJ_NAME} ${SRC_FILES})
 
 # Link against Lua library
-set(LUA_LIBRARY_PATH "/home/escac/lua-5.4.6/src/liblua.a")
+set(LUA_LIBRARY_PATH "C:/mingw64/x86_64-w64-mingw32/lib/liblua54.a")
 target_link_libraries(${OBJ_NAME} ${LUA_LIBRARY_PATH})
 
 # Custom target for running the executable
