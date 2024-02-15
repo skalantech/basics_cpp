@@ -1,0 +1,118 @@
+I want to set a path as an environment variable in windows powershell that gets deleted when I close the shell
+
+ChatGPT
+In Windows PowerShell, you can set an environment variable for the duration of the session by using the $env: scope. This way, the variable will only exist for the current PowerShell session and will be deleted when you close the shell.
+
+Here's an example of how you can set a path as an environment variable in PowerShell:
+
+/////////////////////////////////////////////////////////////////
+powershell
+Copy code
+$env:PATH = "C:\Your\Path\Here"
+Replace "C:\Your\Path\Here" with the actual path you want to set.
+/////////////////////////////////////////////////////////////////
+
+This change will only persist for the current PowerShell session, and the environment variable will be removed when you close the shell.
+
+Alternatively, if you want to create a new environment variable just for the current session, you can use the following syntax:
+
+/////////////////////////////////////////////////////////////////
+powershell
+Copy code
+$env:YourVariableName = "YourValue"
+/////////////////////////////////////////////////////////////////
+
+Again, replace YourVariableName with the desired variable name and YourValue with the value you want to assign.
+
+Remember that these changes are only temporary and will be lost when you close the PowerShell session.
+
+User
+perfect, now how do I do this in cmd
+ChatGPT
+In Command Prompt (cmd), you can set an environment variable for the duration of the session using the set command. Like in PowerShell, this variable will be deleted when you close the command prompt window. Here's an example:
+
+////////////////////////////////////////////////////////////////
+batch
+Copy code
+set PATH=C:\Your\Path\Here
+////////////////////////////////////////////////////////////////
+Replace C:\Your\Path\Here with the actual path you want to set.
+
+Keep in mind that this change is specific to the current Command Prompt session and will not persist after you close the window.
+
+If you want to set a custom environment variable, you can use the set command in a similar way:
+
+////////////////////////////////////////////////////////////////
+batch
+Copy code
+set YourVariableName=YourValue
+////////////////////////////////////////////////////////////////
+
+Replace YourVariableName with the desired variable name and YourValue with the value you want to assign. Again, this change is temporary and will be lost when you close the Command Prompt window.
+
+User
+finally how to do it in bash
+ChatGPT
+In Bash, you can set an environment variable for the duration of the session by using the export command. Here's an example:
+
+////////////////////////////////////////////////////////////////
+bash
+Copy code
+export PATH=/your/path/here
+////////////////////////////////////////////////////////////////
+
+Replace /your/path/here with the actual path you want to set. This change will only persist for the current Bash session and will be removed when you close the terminal.
+
+If you want to set a custom environment variable, you can use the following syntax:
+
+////////////////////////////////////////////////////////////////
+bash
+Copy code
+export YourVariableName=YourValue
+////////////////////////////////////////////////////////////////
+
+Replace YourVariableName with the desired variable name and YourValue with the value you want to assign. As with the path example, this change is temporary and will be lost when you close the terminal.
+
+If you just want to set the variable for the duration of a single command, you can do it on the same line as the command:
+
+bash
+Copy code
+YourVariableName=YourValue command-to-run
+This will set the variable only for the execution of command-to-run, and it won't persist beyond that command.
+
+User
+excellent thank you
+ChatGPT
+You're welcome! If you have any more questions or if there's anything else I can help you with, feel free to ask. Happy coding!
+
+User
+why when doing this in cmd with mingw64 and then doing g++ --version does not work?
+ChatGPT
+When you set an environment variable in the Command Prompt using the set command, the changes are only effective within that particular Command Prompt session. If you try to set an environment variable and then immediately run another program (like g++) in the same Command Prompt window, it may not recognize the changes made to the environment variables.
+
+To ensure that the environment variables are available to other programs, you should set them in the same command line before running the program, or you can use the setx command to make the changes permanent.
+
+Here's an example of setting an environment variable and running g++ in the same command line:
+//////////////////////////////////////////////////////////////////////
+batch
+Copy code
+set PATH=C:\MinGW\bin;%PATH%
+g++ --version
+Replace C:\MinGW\bin with the actual path to your MinGW bin directory.
+//////////////////////////////////////////////////////////////////////
+If you want to make the change permanent, you can use setx:
+
+//////////////////////////////////////////////////////////////////////
+batch
+Copy code
+setx PATH "C:\MinGW\bin;%PATH%"
+//////////////////////////////////////////////////////////////////////
+The setx command updates the user or system environment variable, and the change will be reflected in new Command Prompt windows. Note that you might need to open a new Command Prompt window to see the changes take effect.
+
+Keep in mind that using setx makes the change permanent, so use it cautiously. If you only want the change to be temporary for the current session, use the set command.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+cmake -S . -B build -G "MinGW Makefiles"
+cmake --build build
+./build/executable.exe
