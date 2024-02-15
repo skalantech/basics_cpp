@@ -36,48 +36,63 @@ ofstream or fstream object instead of the cout object.
 using namespace std;
  
 int main () {
-   char data[100];
+	char data[100];
 
-   // open a file in write mode.
-   ofstream outfile;
-   outfile.open("afile.dat");
+	// open a file in write mode.
+	ofstream outfile;
+	outfile.open("afile.dat", ios::app);
 
-   cout << "Writing to the file" << endl;
-   cout << "Enter your name: "; 
-   cin.getline(data, 100);
+	cout << "Writing to the file" << endl;
+	cout << "Enter something: "; 
+	cin.getline(data, 100);
 
-   // write inputted data into the file.
-   outfile << data << endl;
+	// write inputted data into the file.
+	outfile << data << endl;
 
-   cout << "Enter your age: "; 
-   cin >> data;
-   cin.ignore();
-   
-   // again write inputted data into the file.
-   outfile << data << endl;
+	cout << "Enter a word: "; 
+	cin >> data;
+	cin.ignore();
 
-   // close the opened file.
-   outfile.close();
+	// again write inputted data into the file.
+	outfile << data << endl;
 
-   // open a file in read mode.
-   ifstream infile; 
-   infile.open("afile.dat"); 
- 
-   cout << "Reading from the file" << endl; 
-   infile >> data; 
+	// close the opened file.
+	outfile.close();
 
-   // write the data at the screen.
-   cout << data << endl;
-   
-   // again read the data from the file and display it.
-   infile >> data; 
-   cout << data << endl; 
-  
+	// open a file in read mode.
+	ifstream infile; 
+	infile.open("afile.dat", ios::in); 
 
-   // close the opened file.
-   infile.close();
+	cout << "Reading from the file" << endl;
+	
+	cout << "Getting first line: " << '\n';
+	infile >> data;
+	cout << data << ' ';
+	while (infile.get() != '\n')
+	{	
+		infile >> data; 
+		// write the data at the screen.
+		cout << data << ' ';
+	}
+	cout << '\n';
+	
+	cout << "Getting second line: " << '\n';
+	// again read the data from the file and display it.
+	infile.getline(data, 100); 
+	cout << data << endl; 
 
-   return 0;
+	cout << "Getting the rest of the lines: " << '\n';
+	string data_s;
+	while (infile)
+	{
+		getline(infile, data_s);
+		cout << data_s << '\n';
+	}
+
+	// close the opened file.
+	infile.close();
+
+	return 0;
 }
 
 /*
