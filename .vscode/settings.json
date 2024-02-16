@@ -81,5 +81,6 @@
         "numbers": "cpp",
         "span": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

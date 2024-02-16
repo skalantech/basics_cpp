@@ -35,3 +35,8 @@ static void use_std_function(benchmark::State& state) {
 BENCHMARK(use_lambda);
 BENCHMARK(use_std_function);
 BENCHMARK_MAIN();
+
+// Example on linux after running the build steps above. Assumes the
+// `benchmark` and `build` directories are under the current directory.
+// g++ mybenchmark.cc -std=c++11 -isystem benchmark/include \
+//   -Lbenchmark/build/src -lbenchmark -lpthread -o mybenchmark
